@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+}
+p {
+  color: red;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 3% 2% 0 2%;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  font-family: "Yusei Magic", sans-serif;
+  display: inline;
+  padding-right: 35px;
+}
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.nav-links a {
+  position: relative;
+  text-transform: uppercase;
+}
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.1s;
+}
+
+.nav-links a:hover::before {
+  transform: scaleX(1);
+}
+.nav-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.icon {
+  color: white;
+}
