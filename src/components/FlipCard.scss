@@ -27,7 +27,7 @@
       display: flex;
       flex-direction: column;
       transform: rotateY(180deg);
-      background-image: linear-gradient(to right bottom, #f8f1f1, #119e29);
+      background-image: linear-gradient(to right bottom, #f6f6f6, #1e8a37);
       text-align: center;
       position: relative;
 
@@ -35,6 +35,7 @@
         color: black;
         line-height: 2rem;
         margin: 0 2% 2%;
+        font-size: 20px;
       }
       & button {
         background-color: white;

@@ -2,19 +2,22 @@ import React from "react";
 import "./PreviewCard.scss";
 import natureImage from "../images/nature.jpg";
 import { Link } from "react-router-dom";
-function PreviewCard() {
+function PreviewCard(props) {
   return (
     <div className="card">
-      <Link to="/Article-1" style={{ textDecoration: "none", color: "black" }}>
+      <Link
+        to={{ pathname: `/Article/${props.id}`, data: props.id }}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <img className="preview-image" src={natureImage} alt="user-pic" />
-        <h3 className="preview-title">This is a practice title </h3>
+        <h3 className="preview-title">{props.title}</h3>
         <div className="first-section">
-          <p className="subject">Subject:test </p>
+          <p className="subject">Subject: {props.subject}</p>
 
-          <p className="datestamp">December 15, 2025</p>
+          <p className="datestamp">{props.date}</p>
         </div>
         <hr></hr>
-        <p className="author">By: Jesus Cordova</p>
+        <p className="author">By: {props.author}</p>
       </Link>
     </div>
   );

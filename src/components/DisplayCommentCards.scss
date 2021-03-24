@@ -1,3 +1,7 @@
+.comments{
+  flex-direction: column;
+}
+
 .comment-cont {
   display: flex;
   justify-content: space-between;
@@ -12,6 +16,12 @@
   & .profile-info {
     display: flex;
     align-items: center;
+  }
+  & pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    word-wrap: break-word;
+    width: 500px;
+    text-align: left;
   }
 
   & p {

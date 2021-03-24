@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./MainPage.scss";
-import Navigtion from "./Navigation.js";
+
 import FlipCard from "./FlipCard.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -8,7 +8,6 @@ import "aos/dist/aos.css";
 function MainPage() {
   return (
     <div>
-      <Navigtion />
       <div className="overall-info">
         <div className="info">
           <marquee scrollamount="50">GPA:3.5</marquee>

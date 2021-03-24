@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Article.scss";
 import Navigation from "./Navigation";
 import natureImage from "../images/nature.jpg";
 import CommentCards from "./CommentCards";
 import DisplayCommentCards from "./DisplayCommentCards";
+import { ArticleContext } from "../Context/ArticleContext.js";
+import { useLocation } from "react-router-dom";
 
-function Article() {
+function Article(props) {
   const [comments, setComments] = useState([]);
-  
-  function addComment(newComment) {
+  const [article, setArticle] = useContext(ArticleContext);
+  const [currentArticle, setCurrentArticle] = useState({});
+  let articleID = useLocation();
 
+  useEffect(() => {
+    const data = localStorage.getItem("article");
+    if (data) {
+      setCurrentArticle(JSON.parse(data));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("article", JSON.stringify(currentArticle));
+  });
+
+  useEffect(() => {
+    article.map((el) => {
+      if (el._id === articleID.data) {
+        return setCurrentArticle(el);
+      }
+    });
+
+    console.log(currentArticle);
+  }, []);
+
+  function addComment(newComment) {
     setComments((prevComment) => {
       return [...prevComment, newComment];
     });
@@ -17,40 +41,21 @@ function Article() {
 
   return (
     <div className="article-section">
-      <Navigation />
-
       <div className="article-cont">
         <div className="article">
-          <h1>Title of blog </h1>
-          <p>Febuarary 11, 2019</p>
-          <p>Subject: tesing purposes</p>
+          <h1>{currentArticle.title}</h1>
+          <p>{currentArticle.date}</p>
+          <p>Subject: {currentArticle.subject}</p>
           <img className="article-image" src={natureImage} alt="user-pic" />
-          <p className="body-text">
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
+          <p className="body-text">{currentArticle.content}</p>
         </div>
       </div>
       <div className="comment-section">
-        <CommentCards onAdd={addComment} />
-        <DisplayCommentCards/>
-
+        <CommentCards onAdd={addComment} articleID={currentArticle._id} />
+        <DisplayCommentCards
+          newComments={comments}
+          articleID={currentArticle._id}
+        />
       </div>
     </div>
   );
