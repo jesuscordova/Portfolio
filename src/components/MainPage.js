@@ -36,7 +36,10 @@ function MainPage() {
         </div>
         <div className="bio">
           <h1>Jesus Cordova</h1>
-          <p>I enjoy programming.</p>
+          <p>
+            Know enough about a subject to think you are right... but not enough
+            about the subject to know you are wrong.
+          </p>
         </div>
       </div>
       <div id="projects" className="project-section">
@@ -49,7 +52,7 @@ function MainPage() {
         <h1>Contact Me</h1>
         <p>Email: jjcorodvajj@gmail.com</p>
 
-        <p>Phone: 801-792-7794</p>
+        <p>Phone: 801-979-8724</p>
       </div>
     </div>
   );
